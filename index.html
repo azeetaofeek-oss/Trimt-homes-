@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TRIMT HOMES — Your Vision, Our Priority</title>
+<style>
+:root {
+  --site-primary: #13BDEB;
+  --site-secondary: #092D49;
+  --site-background: #F4F8FB;
+  --site-on-primary: #06243A;
+  --site-on-secondary: #FFFFFF;
+  --site-on-background: #102B40;
+  --site-font-body: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --site-font-heading: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --site-heading-scale: 1;
+  --site-spacing-scale: 1;
+  --site-radius-scale: 1;
+  --site-decoration-opacity: 1;
+  color-scheme: light dark;
+}
+* { box-sizing: border-box; }
+body { margin: 0; font-family: var(--site-font-body); background: light-dark(#F4F8FB,#0b1721); color: light-dark(#102B40,#edf5fb); }
+button, input, select { font: inherit; }
+button { cursor: pointer; }
+#app { min-height: 100vh; background-color: light-dark(var(--site-background),#0b1721); border-radius: 0; }
+header { background: light-dark(#fff,#101f2b); border-bottom: 1px solid light-dark(#e3edf4,#253847); position: sticky; top: 0; z-index: 10; }
+.nav { max-width: 1180px; margin: auto; padding: 15px 22px; display: flex; align-items: center; justify-content: space-between; gap: 18px; }
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 850; letter-spacing: .6px; color: light-dark(#092D49,#fff); text-decoration: none; }
+.logo { width: 40px; height: 40px; display: grid; place-items: center; border-radius: 12px; background: var(--site-primary); color: #06243A; font-size: 21px; }
+.brand small { display:block; font-size: 9px; letter-spacing: 2px; color: light-dark(#5c7486,#a5bac9); margin-top: 2px; }
+.navlinks { display:flex; align-items:center; gap: 22px; }
+.navlinks a { color: light-dark(#244459,#d9e8f2); text-decoration:none; font-size:14px; font-weight:650; }
+.navlinks a:hover { color:#079ac7; }
+.btn { border:0; border-radius: 10px; padding: 12px 17px; font-weight:750; transition: transform .15s, opacity .15s; }
+.btn:hover { transform: translateY(-1px); }
+.btn-primary { background: var(--site-primary); color:#06243A; }
+.btn-dark { background: light-dark(#092D49,#e9f4fa); color: light-dark(#fff,#092D49); }
+.btn-outline { background:transparent; border:1px solid light-dark(#d2e1ea,#3c5261); color:inherit; }
+.hero { max-width:1180px; margin:auto; padding: 55px 22px 42px; display:grid; grid-template-columns: 1.03fr .97fr; gap: 42px; align-items:center; }
+.eyebrow { color:#078db7; font-size:12px; font-weight:850; letter-spacing:2px; text-transform:uppercase; display:flex; align-items:center; gap:9px; }
+.eyebrow:before { content:""; width:27px; height:2px; background:var(--site-primary); }
+h1 { font-size: clamp(38px,5.3vw,64px); line-height:1.04; letter-spacing:-2.6px; margin: 17px 0; color: light-dark(#092D49,#f4f9fc); }
+h1 span { color:#08a9d5; }
+.hero p { color:light-dark(#5b7182,#b5c6d1); line-height:1.8; font-size:16px; max-width:510px; }
+.hero-actions { display:flex; gap:12px; flex-wrap:wrap; margin-top:25px; }
+.hero-stats { display:flex; gap:30px; margin-top:34px; flex-wrap:wrap; }
+.stat strong { display:block; font-size:22px; color:light-dark(#092D49,#f6fbff); }
+.stat span { color:light-dark(#73899a,#aabcc8); font-size:12px; }
+.hero-image { min-height:390px; border-radius:24px; overflow:hidden; position:relative; background:#dce8ed; box-shadow:0 24px 60px #082d4920; }
+.hero-image img { width:100%; height:100%; min-height:390px; object-fit:cover; display:block; }
+.image-card { position:absolute; left:18px; bottom:18px; background:#ffffffed; color:#092D49; border-radius:14px; padding:14px 17px; box-shadow:0 8px 30px #092d4920; }
+.image-card strong { display:block; font-size:14px; }
+.image-card span { font-size:12px; color:#607b8c; }
+.search-wrap { max-width:1050px; padding:0 22px; margin:-5px auto 46px; position:relative; z-index:2; }
+.search-panel { background:light-dark(#fff,#132533); border:1px solid light-dark(#e0ebf1,#2b4150); border-radius:16px; padding:17px; box-shadow:0 14px 40px #082d4912; display:grid; grid-template-columns:1.5fr 1fr 1fr auto; gap:12px; align-items:end; }
+.field label { display:block; font-size:11px; color:light-dark(#6a8090,#a6bac7); font-weight:800; text-transform:uppercase; letter-spacing:.7px; margin:0 0 7px 2px; }
+.field input,.field select { width:100%; border:1px solid light-dark(#dce7ee,#344a58); border-radius:9px; padding:12px 11px; color:inherit; background:light-dark(#fff,#0c1b26); outline-color:var(--site-primary); min-width:0; }
+.section { max-width:1180px; margin:0 auto; padding:25px 22px 65px; }
+.section-head { display:flex; justify-content:space-between; gap:15px; align-items:end; margin-bottom:23px; }
+.section h2 { margin:8px 0 0; font-size:clamp(27px,3.3vw,38px); letter-spacing:-1.2px; color:light-dark(#092D49,#f4f9fc); }
+.muted { color:light-dark(#718697,#aabcc8); }
+.section-head p { margin:8px 0 0; font-size:14px; }
+.property-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px; }
+.property { overflow:hidden; border:1px solid light-dark(#e0eaf0,#293f4d); border-radius:16px; background:light-dark(#fff,#122431); }
+.property-photo { height:220px; position:relative; overflow:hidden; background:#dce8ed; }
+.property-photo img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .3s; }
+.property:hover .property-photo img { transform:scale(1.04); }
+.tag { position:absolute; top:13px; left:13px; background:#fff; color:#092D49; padding:7px 10px; border-radius:7px; font-size:10px; font-weight:850; letter-spacing:.5px; }
+.save { position:absolute; right:13px; top:12px; border:0; background:#ffffffed; color:#092D49; width:34px; height:34px; border-radius:50%; font-size:17px; }
+.property-body { padding:17px; }
+.price { color:#078db7; font-weight:850; font-size:20px; }
+.price small { font-size:11px; color:light-dark(#718697,#aabcc8); font-weight:600; }
+.property h3 { color:light-dark(#092D49,#f4f9fc); font-size:17px; margin:8px 0 7px; }
+.location { color:light-dark(#728899,#aabcc8); font-size:12px; display:flex; gap:6px; align-items:center; }
+.features { display:flex; gap:14px; flex-wrap:wrap; border-top:1px solid light-dark(#e7eef3,#2a3f4d); margin-top:16px; padding-top:14px; color:light-dark(#526b7c,#b3c6d2); font-size:12px; }
+.property-footer { margin-top:17px; display:flex; align-items:center; justify-content:space-between; gap:8px; }
+.text-btn { background:none; border:0; color:#078db7; font-weight:800; padding:5px 0; }
+.empty { display:none; padding:36px; text-align:center; border:1px dashed #9db4c3; border-radius:14px; }
+.why { background:light-dark(#092D49,#061521); color:#fff; }
+.why-inner { max-width:1180px; margin:auto; padding:55px 22px; }
+.why h2 { color:#fff; }
+.benefits { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:30px; }
+.benefit { border:1px solid #ffffff20; border-radius:14px; padding:23px; }
+.benefit-icon { width:42px; height:42px; display:grid; place-items:center; border-radius:12px; background:#13BDEB24; color:#13BDEB; font-size:21px; }
+.benefit h3 { margin:17px 0 8px; font-size:17px; }
+.benefit p { color:#b5c8d5; font-size:13px; line-height:1.7; margin:0; }
+.cta { max-width:1136px; margin:55px auto; padding:0 22px; }
+.cta-box { background:linear-gradient(120deg,#13BDEB,#8de4f8); color:#06243A; border-radius:20px; padding:35px; display:flex; justify-content:space-between; align-items:center; gap:20px; }
+.cta-box h2 { font-size:clamp(25px,3vw,35px); margin:0 0 9px; letter-spacing:-1px; }
+.cta-box p { margin:0; color:#17445a; font-size:14px; }
+footer { background:light-dark(#fff,#101f2b); border-top:1px solid light-dark(#e3edf4,#253847); padding:32px 22px; }
+.footer-inner { max-width:1136px; margin:auto; display:flex; justify-content:space-between; gap:22px; flex-wrap:wrap; color:light-dark(#61798a,#aabcc8); font-size:12px; }
+.footer-inner strong { color:light-dark(#092D49,#fff); }
+.modal-backdrop { display:none; position:fixed; inset:0; background:#061522b8; z-index:30; padding:18px; align-items:center; justify-content:center; }
+.modal-backdrop.show { display:flex; }
+.modal { width:min(100%,510px); max-height:90vh; overflow:auto; border-radius:18px; padding:25px; background:light-dark(#fff,#122431); color:inherit; box-shadow:0 30px 100px #0005; }
+.modal-head { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.modal-head h2 { margin:0; color:light-dark(#092D49,#fff); }
+.close { border:0; border-radius:50%; width:35px; height:35px; background:light-dark(#edf3f7,#233b4b); color:inherit; font-size:21px; }
+.modal form { display:grid; gap:13px; margin-top:18px; }
+.modal .field input,.modal .field select { margin-top:0; }
+.notice { padding:12px; border-radius:10px; background:light-dark(#e9f8fc,#123747); color:light-dark(#07506a,#b8edfa); font-size:12px; line-height:1.6; }
+.admin-panel { display:none; max-width:1136px; margin:30px auto; padding:0 22px 55px; }
+.admin-panel.show { display:block; }
+.admin-panel h2 { color:light-dark(#092D49,#fff); }
+.admin-toolbar { display:flex; flex-wrap:wrap; gap:10px; margin:15px 0; }
+.admin-list { border:1px solid light-dark(#dce7ee,#2b4150); border-radius:13px; overflow:hidden; }
+.admin-row { padding:13px 15px; display:flex; align-items:center; justify-content:space-between; gap:12px; border-bottom:1px solid light-dark(#e6edf2,#2b4150); font-size:13px; }
+.admin-row:last-child { border-bottom:0; }
+.status { background:#e0f7eb; color:#12633e; padding:5px 8px; border-radius:7px; font-size:10px; font-weight:800; }
+.toast { position:fixed; bottom:20px; left:50%; transform:translate(-50%,20px); opacity:0; pointer-events:none; background:#092D49; color:#fff; padding:12px 18px; border-radius:10px; z-index:50; transition:.2s; font-size:13px; box-shadow:0 8px 30px #0002; }
+.toast.show { opacity:1; transform:translate(-50%,0); }
+@media (max-width:850px) {
+ .hero { grid-template-columns:1fr; padding-top:38px; gap:28px; }
+ .hero-image,.hero-image img { min-height:300px; }
+ .search-panel { grid-template-columns:1fr 1fr; }
+ .property-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+ .navlinks { gap:12px; }
+ .navlinks a:nth-child(2) { display:none; }
+}
+@media (max-width:560px) {
+ .nav { padding:12px 15px; }
+ .navlinks a { display:none; }
+ .navlinks { gap:8px; }
+ .navlinks .btn { padding:10px 12px; font-size:12px; }
+ .brand { font-size:14px; }
+ .logo { width:35px;height:35px; }
+ .hero { padding:34px 17px 30px; }
+ h1 { letter-spacing:-1.5px; }
+ .hero-stats { gap:20px; }
+ .search-wrap { padding:0 15px; margin-bottom:26px; }
+ .search-panel { grid-template-columns:1fr; }
+ .section { padding:20px 15px 45px; }
+ .section-head { align-items:start; flex-direction:column; }
+ .property-grid { grid-template-columns:1fr; }
+ .property-photo { height:235px; }
+ .benefits { grid-template-columns:1fr; }
+ .why-inner { padding:40px 17px; }
+ .cta { margin:35px auto; padding:0 15px; }
+ .cta-box { padding:25px; align-items:start; flex-direction:column; }
+ .admin-panel { padding:0 15px 40px; }
+}
+</style>
+</head>
+<body>
+<div id="app">
+<header>
+  <nav class="nav">
+    <a class="brand" href="#" aria-label="TRIMT HOMES home"><span class="logo">⌂</span><span>TRIMT HOMES<small>YOUR VISION, OUR PRIORITY</small></span></a>
+    <div class="navlinks">
+      <a href="#properties">Properties</a>
+      <a href="#why-us">Why Trimt</a>
+      <button class="btn btn-outline" onclick="openAuth('login')">Sign in</button>
+      <button class="btn btn-primary" onclick="openAuth('register')">Get started</button>
+    </div>
+  </nav>
+</header>
+
+<main>
+<section class="hero">
+  <div>
+    <div class="eyebrow">Find a place to call yours</div>
+    <h1>Find a home that feels like <span>you.</span></h1>
+    <p>Thoughtfully selected homes and property opportunities to help you make your next move with confidence. Your next chapter starts here.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#properties" style="text-decoration:none">Explore properties ↗</a>
+      <button class="btn btn-outline" onclick="openContact()">Talk to our team</button>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><strong>Curated</strong><span>Property selections</span></div>
+      <div class="stat"><strong>Personal</strong><span>Support at every step</span></div>
+      <div class="stat"><strong>Trusted</strong><span>Client-first service</span></div>
+    </div>
+  </div>
+  <div class="hero-image">
+    <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=85" alt="Modern luxury home with landscaped garden">
+    <div class="image-card"><strong>Make room for what's next.</strong><span>Property solutions shaped around you</span></div>
+  </div>
+</section>
+
+<div class="search-wrap" id="search">
+  <div class="search-panel">
+    <div class="field"><label for="q">Search properties</label><input id="q" placeholder="Try Lekki, 3 bedroom..." oninput="filterProperties()"></div>
+    <div class="field"><label for="type">Property type</label><select id="type" onchange="filterProperties()"><option value="">All property types</option><option>House</option><option>Apartment</option><option>Land</option></select></div>
+    <div class="field"><label for="purpose">Looking to</label><select id="purpose" onchange="filterProperties()"><option value="">Buy or rent</option><option>For Sale</option><option>For Rent</option></select></div>
+    <button class="btn btn-primary" onclick="filterProperties()">Search homes</button>
+  </div>
+</div>
+
+<section class="section" id="properties">
+  <div class="section-head">
+    <div><div class="eyebrow">Discover your next move</div><h2>Featured properties</h2><p class="muted">Explore a handpicked selection of spaces and opportunities.</p></div>
+    <button class="btn btn-outline" onclick="resetFilters()">Clear filters ↺</button>
+  </div>
+  <div class="property-grid" id="propertyGrid"></div>
+  <div class="empty" id="emptyState"><strong>No properties match those filters.</strong><p class="muted">Try another location or clear your search.</p><button class="btn btn-primary" onclick="resetFilters()">Show all properties</button></div>
+</section>
+
+<section class="why" id="why-us">
+  <div class="why-inner">
+    <div class="eyebrow">The TRIMT difference</div>
+    <h2>More than a property. A better way forward.</h2>
+    <div class="benefits">
+      <div class="benefit"><div class="benefit-icon">⌂</div><h3>Options that fit your life</h3><p>Browse homes and property opportunities by location, type and your next goal.</p></div>
+      <div class="benefit"><div class="benefit-icon">◇</div><h3>Guidance you can count on</h3><p>Our customer-first approach helps you ask the right questions before making a move.</p></div>
+      <div class="benefit"><div class="benefit-icon">↗</div><h3>Clear next steps</h3><p>Save properties, send enquiries and keep your property search organised.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="cta-box"><div><h2>Ready to make your next move?</h2><p>Tell us what you're looking for and we'll help you explore your options.</p></div><button class="btn btn-dark" onclick="openContact()">Speak to TRIMT HOMES ↗</button></div>
+</section>
+
+<section class="admin-panel" id="adminPanel">
+  <div class="eyebrow">Management preview</div><h2>Admin dashboard</h2>
+  <p class="muted">This is a local demo dashboard. Listing changes stay in this browser only until a secure backend is connected.</p>
+  <div class="admin-toolbar"><button class="btn btn-primary" onclick="openAddProperty()">+ Add property</button><button class="btn btn-outline" onclick="renderAdmin()">Refresh list</button><button class="btn btn-outline" onclick="closeAdmin()">Close dashboard</button></div>
+  <div class="admin-list" id="adminList"></div>
+</section>
+</main>
+
+<footer><div class="footer-inner"><div><strong>TRIMT HOMES</strong><br><span>Your Vision, Our Priority</span></div><div>Property sales · Rentals · Property guidance</div><div>© <span id="year"></span> TRIMT HOMES. All rights reserved.</div></div></footer>
+</div>
+
+<div class="modal-backdrop" id="modalBackdrop" onclick="if(event.target===this)closeModal()">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-head"><h2 id="modalTitle">Welcome to TRIMT HOMES</h2><button class="close" aria-label="Close" onclick="closeModal()">×</button></div>
+    <div id="modalContent"></div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const starterProperties = [
+ {id:1,title:"Contemporary Family Residence",location:"Lekki Phase 1, Lagos",type:"House",purpose:"For Sale",price:185000000,beds:4,baths:4,area:"420 sqm",tag:"FEATURED",img:"https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=900&q=80"},
+ {id:2,title:"Bright Modern Apartment",location:"Victoria Island, Lagos",type:"Apartment",purpose:"For Rent",price:8500000,beds:3,baths:3,area:"180 sqm",tag:"POPULAR",img:"https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&q=80"},
+ {id:3,title:"Premium Residential Plot",location:"Sangotedo, Lagos",type:"Land",purpose:"For Sale",price:45000000,beds:0,baths:0,area:"600 sqm",tag:"LAND",img:"https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=900&q=80"},
+ {id:4,title:"Elegant Detached Duplex",location:"Ajah, Lagos",type:"House",purpose:"For Sale",price:125000000,beds:5,baths:5,area:"500 sqm",tag:"NEW",img:"https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=900&q=80"},
+ {id:5,title:"City Living Apartment",location:"Ikeja GRA, Lagos",type:"Apartment",purpose:"For Rent",price:5200000,beds:2,baths:2,area:"120 sqm",tag:"RENTAL",img:"https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=900&q=80"},
+ {id:6,title:"Private Estate Land",location:"Epe, Lagos",type:"Land",purpose:"For Sale",price:12000000,beds:0,baths:0,area:"500 sqm",tag:"OPPORTUNITY",img:"https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=900&q=80"}
+];
+let properties = [...starterProperties];
+let saved = new Set();
+let signedInUser = null;
+const naira = n => "₦" + Number(n).toLocaleString("en-NG");
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function propertyCard(p){
+ const features = p.type==="Land" ? `<span>▧ ${escapeHtml(p.area)}</span><span>◈ Residential plot</span>` : `<span>▣ ${p.beds} beds</span><span>♧ ${p.baths} baths</span><span>▧ ${escapeHtml(p.area)}</span>`;
+ return `<article class="property"><div class="property-photo"><img loading="lazy" src="${escapeHtml(p.img)}" alt="${escapeHtml(p.title)}"><span class="tag">${escapeHtml(p.tag||p.purpose)}</span><button class="save" aria-label="Save property" onclick="toggleSave(${p.id})">${saved.has(p.id)?"♥":"♡"}</button></div><div class="property-body"><div class="price">${naira(p.price)} <small>${p.purpose==="For Rent"?"/ year":""}</small></div><h3>${escapeHtml(p.title)}</h3><div class="location">⌖ ${escapeHtml(p.location)}</div><div class="features">${features}</div><div class="property-footer"><span class="muted" style="font-size:11px">${escapeHtml(p.purpose)} · ${escapeHtml(p.type)}</span><button class="text-btn" onclick="propertyDetails(${p.id})">View details ↗</button></div></div></article>`;
+}
+function renderProperties(list=properties){const grid=document.getElementById("propertyGrid");grid.innerHTML=list.map(propertyCard).join("");document.getElementById("emptyState").style.display=list.length?"none":"block";}
+function filterProperties(){
+ const q=document.getElementById("q").value.toLowerCase().trim(), type=document.getElementById("type").value, purpose=document.getElementById("purpose").value;
+ renderProperties(properties.filter(p=>(!q||(p.title+" "+p.location+" "+p.type+" "+p.beds+" bedroom").toLowerCase().includes(q))&&(!type||p.type===type)&&(!purpose||p.purpose===purpose)));
+}
+function resetFilters(){document.getElementById("q").value="";document.getElementById("type").value="";document.getElementById("purpose").value="";renderProperties();}
+function toast(msg){const el=document.getElementById("toast");el.textContent=msg;el.classList.add("show");setTimeout(()=>el.classList.remove("show"),2600);}
+function toggleSave(id){if(!signedInUser){openAuth("login","Sign in to save properties");return;}saved.has(id)?saved.delete(id):saved.add(id);filterProperties();toast(saved.has(id)?"Property saved to your favourites":"Property removed from favourites");}
+function propertyDetails(id){
+ const p=properties.find(x=>x.id===id);if(!p)return;
+ document.getElementById("modalTitle").textContent=p.title;
+ document.getElementById("modalContent").innerHTML=`<img src="${escapeHtml(p.img)}" alt="${escapeHtml(p.title)}" style="width:100%;height:190px;object-fit:cover;border-radius:12px;margin-top:16px"><p class="price">${naira(p.price)} <small>${p.purpose==="For Rent"?"/ year":""}</small></p><p class="muted">⌖ ${escapeHtml(p.location)}</p><p>${escapeHtml(p.type)} · ${escapeHtml(p.purpose)} · ${escapeHtml(p.area)}</p>${p.type!=="Land"?`<p>${p.beds} bedrooms · ${p.baths} bathrooms</p>`:""}<div class="notice">Demo listing: property information and prices are sample content and must be verified before publication.</div><button class="btn btn-primary" style="width:100%;margin-top:16px" onclick="openContact('${escapeHtml(p.title)}')">Enquire about this property</button>`;
+ openModal();
+}
+function openModal(){document.getElementById("modalBackdrop").classList.add("show");}
+function closeModal(){document.getElementById("modalBackdrop").classList.remove("show");}
+function openAuth(mode="login",message=""){
+ document.getElementById("modalTitle").textContent=mode==="register"?"Create your account":"Sign in to TRIMT HOMES";
+ document.getElementById("modalContent").innerHTML=`${message?`<p class="muted">${escapeHtml(message)}</p>`:""}<div class="notice">Interactive demo only. Accounts created here are not securely stored and do not work across devices.</div><form onsubmit="authSubmit(event,'${mode}')">${mode==="register"?`<div class="field"><label>Full name</label><input name="name" required placeholder="Your full name"></div>`:""}<div class="field"><label>Email address</label><input type="email" name="email" required placeholder="you@example.com"></div><div class="field"><label>Password</label><input type="password" name="password" minlength="6" required placeholder="At least 6 characters"></div><button class="btn btn-primary" type="submit">${mode==="register"?"Create account":"Sign in"}</button></form><p class="muted" style="font-size:13px">${mode==="register"?"Already have an account?":"New to TRIMT HOMES?"} <button class="text-btn" onclick="openAuth('${mode==="register"?"login":"register"}')">${mode==="register"?"Sign in":"Create an account"}</button></p>`;
+ openModal();
+}
+function authSubmit(e,mode){e.preventDefault();const fd=new FormData(e.target);signedInUser={name:fd.get("name")||String(fd.get("email")).split("@")[0],email:fd.get("email")};closeModal();document.querySelector(".navlinks .btn-outline").textContent="My account";document.querySelector(".navlinks .btn-outline").onclick=()=>accountMenu();toast(mode==="register"?"Demo account created":"Signed in for this demo");}
+function accountMenu(){document.getElementById("modalTitle").textContent="Your account";document.getElementById("modalContent").innerHTML=`<p>Signed in as <strong>${escapeHtml(signedInUser?.name||"Guest")}</strong></p><p class="muted">${escapeHtml(signedInUser?.email||"")}</p><p>Saved properties: ${saved.size}</p><button class="btn btn-outline" onclick="closeModal();openAdminLogin()">Admin dashboard</button> <button class="btn btn-primary" onclick="signOut()">Sign out</button>`;openModal();}
+function signOut(){signedInUser=null;saved.clear();document.querySelector(".navlinks .btn-outline").textContent="Sign in";document.querySelector(".navlinks .btn-outline").onclick=()=>openAuth("login");closeModal();renderProperties();toast("Signed out of demo");}
+function openContact(property=""){
+ document.getElementById("modalTitle").textContent="Talk to TRIMT HOMES";
+ document.getElementById("modalContent").innerHTML=`<p class="muted">Tell us how we can help. This demo shows the enquiry flow; connect a real email or CRM service before launch.</p><form onsubmit="sendEnquiry(event)"><div class="field"><label>Your name</label><input name="name" required placeholder="Full name" value="${escapeHtml(signedInUser?.name||"")}"></div><div class="field"><label>Email or phone</label><input name="contact" required placeholder="Email address or phone number"></div><div class="field"><label>I'm interested in</label><input name="interest" value="${escapeHtml(property)}" placeholder="Property or general enquiry"></div><div class="field"><label>Message</label><input name="message" required placeholder="Tell us what you need"></div><button class="btn btn-primary" type="submit">Send enquiry</button></form>`;
+ openModal();
+}
+function sendEnquiry(e){e.preventDefault();closeModal();toast("Demo enquiry captured in this session only");}
+function openAdminLogin(){document.getElementById("modalTitle").textContent="Admin access";document.getElementById("modalContent").innerHTML=`<div class="notice">Prototype access only. In production, admin roles must be assigned securely on the server. Demo password: <strong>trimt-demo</strong></div><form onsubmit="adminLogin(event)"><div class="field"><label>Demo admin password</label><input name="password" type="password" required placeholder="Enter demo password"></div><button class="btn btn-primary">Open dashboard</button></form>`;openModal();}
+function adminLogin(e){e.preventDefault();if(new FormData(e.target).get("password")!=="trimt-demo"){toast("Incorrect demo password");return;}closeModal();document.getElementById("adminPanel").classList.add("show");renderAdmin();document.getElementById("adminPanel").scrollIntoView({behavior:"smooth"});}
+function closeAdmin(){document.getElementById("adminPanel").classList.remove("show");}
+function renderAdmin(){document.getElementById("adminList").innerHTML=properties.map(p=>`<div class="admin-row"><div><strong>${escapeHtml(p.title)}</strong><br><span class="muted">${escapeHtml(p.location)} · ${naira(p.price)}</span></div><div style="display:flex;align-items:center;gap:8px"><span class="status">Demo listing</span><button class="btn btn-outline" style="padding:7px 9px" onclick="deleteProperty(${p.id})">Delete</button></div></div>`).join("")||"<div class='admin-row'>No properties yet.</div>";}
+function deleteProperty(id){if(!confirm("Remove this sample listing from the current demo?"))return;properties=properties.filter(p=>p.id!==id);renderAdmin();renderProperties();}
+function openAddProperty(){document.getElementById("modalTitle").textContent="Add property";document.getElementById("modalContent").innerHTML=`<div class="notice">This adds a temporary listing to the current page. A production admin panel needs authenticated server-side writes.</div><form onsubmit="addProperty(event)"><div class="field"><label>Property title</label><input name="title" required></div><div class="field"><label>Location</label><input name="location" required placeholder="e.g. Lekki, Lagos"></div><div class="field"><label>Type</label><select name="type"><option>House</option><option>Apartment</option><option>Land</option></select></div><div class="field"><label>Purpose</label><select name="purpose"><option>For Sale</option><option>For Rent</option></select></div><div class="field"><label>Price in naira</label><input name="price" type="number" min="1" required></div><div class="field"><label>Image URL</label><input name="img" type="url" placeholder="https://..."></div><button class="btn btn-primary">Add listing</button></form>`;openModal();}
+function addProperty(e){e.preventDefault();const d=new FormData(e.target);properties.unshift({id:Date.now(),title:d.get("title"),location:d.get("location"),type:d.get("type"),purpose:d.get("purpose"),price:Number(d.get("price")),beds:0,baths:0,area:"Ask for details",tag:"NEW",img:d.get("img")||starterProperties[0].img});closeModal();renderProperties();renderAdmin();toast("Listing added to this demo session");}
+document.getElementById("year").textContent=new Date().getFullYear();
+renderProperties();
+</script>
+</body>
+</html>
